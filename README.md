@@ -63,7 +63,7 @@ echo "deb [signed-by=/usr/share/keyrings/opensearch-keyring] https://artifacts.o
 ### 🔄 Mettez à jour et installez OpenSearch :
 ```bash
 sudo apt-get update
-sudo env OPENSEARCH_INITIAL_ADMIN_PASSWORD=IT-Connect2024! apt-get install opensearch
+sudo env OPENSEARCH_INITIAL_ADMIN_PASSWORD=Azertygraylog1 apt-get install opensearch
 ```
 
 ### ⚙️ Configurez OpenSearch :
