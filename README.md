@@ -1,4 +1,5 @@
 # Graylog
+
 # 🛠️ Installation pas à pas de Graylog
 
 Commençons par une mise à jour du cache des paquets et l'installation d'outils nécessaires pour la suite des événements :
@@ -8,7 +9,8 @@ sudo apt-get update
 sudo apt-get install curl lsb-release ca-certificates gnupg2 pwgen
 ```
 
-## 🗂️ A. Installation de MongoDB
+## 🗂️ A. Installation de MongoDB <br> 
+:rotating_light::exclamation:⚠️ ATTENTION RISQUE DE CONFLIT : CPU et certaines versions de **mongodb** :exclamation: Vérifier avant installation  ⚠️:exclamation:
 
 ### 📥 Téléchargez la clé GPG :
 ```bash
