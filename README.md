@@ -1,4 +1,6 @@
-# Graylog
+# Graylog — notes d'installation historiques
+
+> Ce document correspond à un laboratoire de formation avec Graylog 6.1. Avant une nouvelle installation, sélectionner des versions compatibles de Graylog, MongoDB, OpenSearch et du système dans la [matrice officielle](https://go2docs.graylog.org/current/downloading_and_installing_graylog/compatibility_matrix.htm). Relecture documentaire en novembre 2026 ; déploiement non rejoué.
 
 # 🛠️ Installation pas à pas de Graylog
 
@@ -26,21 +28,7 @@ echo "deb [signed-by=/usr/share/keyrings/mongodb-server-6.0.gpg] http://repo.mon
 
 ⚠️ **Dépendance manquante `libssl1.1`**
 
-Installez `libssl1.1` manuellement :
-```bash
-wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.23_amd64.deb
-sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2.23_amd64.deb
-```
-Et une fois la dépendance manquante installée poursuivre avec :
-```bash
-sudo apt-get update
-sudo apt-get install -y mongodb-org
-```
-
-Relancez l'installation de MongoDB :
-```bash
-sudo apt-get install -y mongodb-org
-```
+Si une dépendance manque, vérifier la compatibilité entre le dépôt MongoDB et la distribution. Choisir une combinaison prise en charge ; ne pas installer un ancien paquet Ubuntu dans Debian pour contourner l'erreur. Reprendre l'installation en suivant la documentation correspondant aux versions retenues.
 
 ### 🔧 Configurez et démarrez MongoDB :
 ```bash
@@ -65,7 +53,8 @@ echo "deb [signed-by=/usr/share/keyrings/opensearch-keyring] https://artifacts.o
 ### 🔄 Mettez à jour et installez OpenSearch :
 ```bash
 sudo apt-get update
-sudo env OPENSEARCH_INITIAL_ADMIN_PASSWORD=Azertygraylog1 apt-get install opensearch
+# Remplacer cette valeur par un secret propre au laboratoire.
+sudo env OPENSEARCH_INITIAL_ADMIN_PASSWORD='<SECRET_DU_LABORATOIRE>' apt-get install opensearch
 ```
 
 ### ⚙️ Configurez OpenSearch :
@@ -83,7 +72,7 @@ path.logs: /var/log/opensearch
 discovery.type: single-node
 network.host: 127.0.0.1
 action.auto_create_index: false
-plugins.security.disabled: true
+plugins.security.disabled: true  # Exemple historique : laboratoire local isolé uniquement.
 ```
 
 ### ⚙️ Configurez la JVM :
@@ -155,4 +144,4 @@ http://<IP_DU_SERVEUR>:9000
 ```
 
 ## 🏁 Conclusion
-Félicitations, vous avez installé Graylog ! Vous pouvez maintenant gérer vos logs de manière centralisée. 🎉
+Pour valider le laboratoire, configurer une source de journaux, produire un événement de test et vérifier sa réception dans Graylog. La présence des étapes d'installation dans ce document ne constitue pas un résultat de test.
